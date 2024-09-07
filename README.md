@@ -4,7 +4,7 @@ The goal of this assignment is to implement a basic Library Management System as
 
 ## Description
 
-A library has books and users. Your job is to model this system using classes or interfaces as you see fit.
+A library system manages books and users, with functionalities such as adding a book, retrieving a book by ID, and more. Your job is to model this system using classes or interfaces as you see fit.
 
 ## Level 1: Basic Library Setup
 
