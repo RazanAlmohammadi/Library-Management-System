@@ -23,7 +23,7 @@ A library system manages books and users, with functionalities such as adding a 
 
 The Library has features:
 
-- Get all books/users with pagination, sorted by created date.
+- Get all books/users with pagination, sorted by created date. (example: GetAllBooks(int pageNumber, int pageSize))
 - Find books by title
 - Find users by name
 - Add new book/user to the library
