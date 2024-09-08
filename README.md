@@ -29,6 +29,8 @@ The Library has features:
 - Add new book/user to the library
 - Delete book/user by id
 
+  **_Remember to add Handle Exception logic_**
+
 Use all the features above in `Program.cs`
 
 ```
