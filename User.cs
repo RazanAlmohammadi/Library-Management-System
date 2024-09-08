@@ -7,6 +7,10 @@ namespace LibraryManagementSystem
 {
     public class User : Base
     {
-        
+        public string Name { get; set; }
+        public User(string name) : base()
+        {
+            Name = name;
+        }
     }
 }

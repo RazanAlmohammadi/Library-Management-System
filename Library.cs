@@ -7,11 +7,7 @@ namespace LibraryManagementSystem
 {
     public class Library
     {
-        public string Name { get; set; }
-        public Library(string name) : base()
-        {
-            Name = name;
-        }
+       
 
     }
 }
