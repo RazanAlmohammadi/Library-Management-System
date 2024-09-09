@@ -8,7 +8,7 @@ namespace LibraryManagementSystem
     public class Book : Base
     {
         public string Title { get; set; }
-        public Book(string title):base()
+        public Book(string title, DateTime? createdDate = null) : base(createdDate)
         {
             Title = title;
         }

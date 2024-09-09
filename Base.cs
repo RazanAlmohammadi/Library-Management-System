@@ -10,7 +10,7 @@ namespace LibraryManagementSystem
         public Guid Id { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public Base()
+        public Base(DateTime? createdDate)
         {
             Id = Guid.NewGuid(); 
             CreatedDate = DateTime.Now; 
