@@ -10,10 +10,10 @@ namespace LibraryManagementSystem
         public Guid Id { get; set; }
         public DateTime CreatedDate { get; set; }
 
-        public Base(DateTime? createdDate)
+        public Base(DateTime? createdDate = null)
         {
-            Id = Guid.NewGuid(); 
-            CreatedDate = DateTime.Now; 
+            Id = Guid.NewGuid();
+            CreatedDate = createdDate ?? DateTime.Now;
         }
     }
 }

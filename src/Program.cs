@@ -54,7 +54,7 @@ namespace LibraryManagementSystem
 
                 Console.WriteLine("Users in the library:");
 
-                foreach (var user in library.GetAllUsers(1, 5))
+                foreach (var user in library.GetAllUsers(1, 10))
                 {
                     Console.WriteLine($"Name: {user.Name}, Joined: {user.CreatedDate}");
                 }

@@ -7,8 +7,8 @@ namespace LibraryManagementSystem
 {
     public class Library
     {
-        private List<Book> books = new List<Book>();
-        private List<User> users = new List<User>();
+        private List<Book> _books = new List<Book>();
+        private List<User> _users = new List<User>();
 
         public List<Book> GetAllBooks(int pageNumber, int pageSize)
         {
@@ -18,7 +18,7 @@ namespace LibraryManagementSystem
             }
 
             var booksToSkip = (pageNumber - 1) * pageSize;
-            return books
+            return _books
                 .OrderBy(book => book.CreatedDate)
                 .Skip(booksToSkip)
                 .Take(pageSize)
@@ -32,7 +32,7 @@ namespace LibraryManagementSystem
                 throw new ArgumentException("Error: Both pageNumber and pageSize must be positive integers.");
             }
             var usersToSkip = (pageNumber - 1) * pageSize;
-            return users
+            return _users
                 .OrderBy(user => user.CreatedDate)
                 .Skip(usersToSkip)
                 .Take(pageSize)
@@ -45,7 +45,7 @@ namespace LibraryManagementSystem
             {
                 throw new ArgumentException("Title can not be empty ");
             }
-            return books.SingleOrDefault(i => i.Title == title);
+            return _books.SingleOrDefault(i => i.Title == title);
         }
 
         public User? FindUsersByName(string name)
@@ -54,37 +54,37 @@ namespace LibraryManagementSystem
             {
                 throw new ArgumentException("Name can not be empty ");
             }
-            return users.SingleOrDefault(i => i.Name == name);
+            return _users.SingleOrDefault(i => i.Name == name);
 
         }
         public void AddBook(Book book)
         {
-            if (books.Any(i => i.Title == book.Title))
+            if (_books.Any(i => i.Title == book.Title))
             {
                 throw new Exception("A Book with the same name already exists in the library");
             }
 
-            books.Add(book);
+            _books.Add(book);
         }
 
         public void AddUser(User user)
         {
-            if (users.Any(i => i.Name == user.Name))
+            if (_users.Any(i => i.Name == user.Name))
             {
                 throw new Exception("A User with the same name already exists in the library");
             }
 
-            users.Add(user);
+            _users.Add(user);
         }
 
         public void DeleteBook(Guid id)
         {
-            int index = books.FindIndex(b => b.Id == id);
+            int index = _books.FindIndex(b => b.Id == id);
 
             if (index >= 0)
             {
 
-                books.RemoveAt(index);
+                _books.RemoveAt(index);
                 Console.WriteLine($"Book with '{id}' ID deleted successfully");
             }
             else
@@ -95,12 +95,12 @@ namespace LibraryManagementSystem
 
         public void DeleteUser(Guid id)
         {
-            int index = users.FindIndex(u => u.Id == id);
+            int index = _users.FindIndex(u => u.Id == id);
 
             if (index >= 0)
             {
 
-                users.RemoveAt(index);
+                _users.RemoveAt(index);
                 Console.WriteLine($"User with '{id}' ID deleted successfully");
             }
             else
