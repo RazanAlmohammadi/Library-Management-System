@@ -14,7 +14,7 @@ namespace LibraryManagementSystem
 
         public Library(INotificationService notificationService)
         {
-            _NotificationService =  notificationService;
+            _NotificationService = notificationService;
         }
 
 
@@ -124,6 +124,29 @@ namespace LibraryManagementSystem
             {
                 throw new KeyNotFoundException($"User with '{id}' ID not found");
             }
+        }
+        public void BorrowBook(Guid bookId, Guid userId,int days )
+        {
+            var book = _books.SingleOrDefault(b => b.Id == bookId);
+            var user = _users.SingleOrDefault(u => u.Id == userId);
+           var curentDate= DateTime.Now;
+           var returnDate=curentDate.AddDays(days);
+            if (user == null)
+            {
+                throw new Exception("the user not found");
+            }
+            if(book == null)
+            {
+                throw new Exception("the book not found");
+            }
+            if (book.IsBorrowed)
+            {
+                throw new Exception($"The book '{book.Title}' is already borrowed by '{book.BorrowedBy}'.");
+            }
+            book.Borrow(user.Name);  
+            Console.WriteLine($"Book '{book.Title}' has been borrowed by '{user.Name}'on '{curentDate}. Due Date is '{returnDate}");
+            
+            
         }
 
     }

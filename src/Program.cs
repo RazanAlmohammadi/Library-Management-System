@@ -88,6 +88,12 @@ namespace LibraryManagementSystem
 
                 var bookIdToDelete = book5.Id;
                 libraryWithSMS.DeleteBook(bookIdToDelete);
+             
+             Console.WriteLine($"\n Borrowing Books :");
+             
+                libraryWithEmail.BorrowBook(book1.Id, user1.Id,7);
+                libraryWithEmail.BorrowBook(book2.Id, user2.Id, 4);
+                libraryWithEmail.BorrowBook(book1.Id, user1.Id, 3);
             }
 
             catch (ArgumentException ex)
