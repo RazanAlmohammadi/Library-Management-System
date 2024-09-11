@@ -7,6 +7,7 @@ namespace LibraryManagementSystem
     {
         private static void Main()
         {
+            
             Library library = new Library();
             try
             {

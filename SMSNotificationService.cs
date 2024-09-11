@@ -8,15 +8,15 @@ namespace onlineLibraryManagementSystem
 {
     public class SMSNotificationService : INotificationService
     {
-        public void SendNotificationOnFailure(string title)
+        public void SendNotificationOnFailure(string message)
         {
-            Console.WriteLine($"Error adding User '{title}'. Please email support@library.com.");
+            Console.WriteLine($"SMS error notification  '{message}'. Please email support@library.com.");
 
         }
 
-        public void SendNotificationOnSuccess(string title)
+        public void SendNotificationOnSuccess(string message)
         {
-            Console.WriteLine($"Book '{title}' added to Library. Thank you!");
+            Console.WriteLine($"SMS notification '{message}'. Thank you!");
 
         }
     }

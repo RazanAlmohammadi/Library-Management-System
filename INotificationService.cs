@@ -7,7 +7,7 @@ namespace LibraryManagementSystem
 {
     public interface INotificationService
     {
-        void SendNotificationOnSuccess(string title);
-        void SendNotificationOnFailure(string title);
+        void SendNotificationOnSuccess(string message);
+        void SendNotificationOnFailure(string message);
     }
 }

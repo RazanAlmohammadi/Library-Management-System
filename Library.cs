@@ -6,10 +6,18 @@ using onlineLibraryManagementSystem;
 
 namespace LibraryManagementSystem
 {
-    public class Library 
+    public class Library
     {
         private List<Book> _books = new List<Book>();
         private List<User> _users = new List<User>();
+        private EmailNotificationService _EmailNotificationService;
+
+        public Library()
+        {
+            _EmailNotificationService =  new EmailNotificationService();
+        }
+
+        
 
         public List<Book> GetAllBooks(int pageNumber, int pageSize)
         {
@@ -24,6 +32,7 @@ namespace LibraryManagementSystem
                 .Skip(booksToSkip)
                 .Take(pageSize)
                 .ToList();
+
         }
         public List<User> GetAllUsers(int pageNumber, int pageSize)
         {
@@ -63,9 +72,11 @@ namespace LibraryManagementSystem
             if (_books.Any(i => i.Title == book.Title))
             {
                 throw new Exception("A Book with the same name already exists in the library");
+                _EmailNotificationService.SendNotificationOnSuccess($"We encountered an issue adding '{book.Title}' ");
             }
 
             _books.Add(book);
+            _EmailNotificationService.SendNotificationOnSuccess($"Hello, a new book titled '{book.Title}' has been successfully added to the Library");
         }
 
         public void AddUser(User user)
@@ -73,9 +84,12 @@ namespace LibraryManagementSystem
             if (_users.Any(i => i.Name == user.Name))
             {
                 throw new Exception("A User with the same name already exists in the library");
+                _EmailNotificationService.SendNotificationOnFailure($"We encountered an issue adding '{user.Name}' ");
             }
 
             _users.Add(user);
+            _EmailNotificationService.SendNotificationOnSuccess($"Hello, a new user named '{user.Name}' has been successfully added to the Library");
+
         }
 
         public void DeleteBook(Guid id)
@@ -109,7 +123,7 @@ namespace LibraryManagementSystem
                 throw new KeyNotFoundException($"User with '{id}' ID not found");
             }
         }
-      
+
     }
 
 }

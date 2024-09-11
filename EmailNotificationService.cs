@@ -8,18 +8,16 @@ namespace onlineLibraryManagementSystem
 {
     public class EmailNotificationService : INotificationService
     {
-        public void SendNotificationOnFailure(string title)
+        public void SendNotificationOnFailure(string message)
         {
-            Console.WriteLine($"Hello, a new book titled '{title}' has been successfully added to the Library." +
-            "If you have any queries or feedback, please contact our support team at support@library.com.");
-
+            Console.WriteLine($"ERORR email notification : '{message}'."+
+             "For more help, visit our FAQ at library.com/faq");
         }
 
-        public void SendNotificationOnSuccess(string title)
+        public void SendNotificationOnSuccess(string message)
         {
-            Console.WriteLine($"We encountered an issue adding 'ABC'." +
-            "Please review the input data. For more help, visit our FAQ at library.com/faq.");
-
+            Console.WriteLine($" Email notification : '{message}'." +
+             "If you have any queries or feedback, please contact our support team at support@library.com.");
         }
-    }
+        }
 }
