@@ -10,11 +10,11 @@ namespace LibraryManagementSystem
     {
         private List<Book> _books = new List<Book>();
         private List<User> _users = new List<User>();
-        private EmailNotificationService _EmailNotificationService;
+        private INotificationService _NotificationService;
 
-        public Library()
+        public Library(INotificationService notificationService)
         {
-            _EmailNotificationService = new EmailNotificationService();
+            _NotificationService =  notificationService;
         }
 
 
@@ -71,26 +71,26 @@ namespace LibraryManagementSystem
         {
             if (_books.Any(i => i.Title == book.Title))
             {
-                _EmailNotificationService.SendNotificationOnFailure($"We encountered an issue adding '{book.Title}' ");
+                _NotificationService.SendNotificationOnFailure($"{book.Title}");
                 throw new Exception("A Book with the same name already exists in the library");
 
             }
 
             _books.Add(book);
-            _EmailNotificationService.SendNotificationOnSuccess($"Hello, a new book titled '{book.Title}' has been successfully added to the Library");
+            _NotificationService.SendNotificationOnSuccess($"{book.Title}");
         }
 
         public void AddUser(User user)
         {
             if (_users.Any(i => i.Name == user.Name))
             {
-                _EmailNotificationService.SendNotificationOnFailure($"We encountered an issue adding '{user.Name}' ");
+                _NotificationService.SendNotificationOnFailure($"{user.Name}");
                 throw new Exception("A User with the same name already exists in the library");
 
             }
 
             _users.Add(user);
-            _EmailNotificationService.SendNotificationOnSuccess($"Hello, a new user named '{user.Name}' has been successfully added to the Library");
+            _NotificationService.SendNotificationOnSuccess($"'{user.Name}'");
 
         }
 
@@ -102,7 +102,7 @@ namespace LibraryManagementSystem
             {
 
                 _books.RemoveAt(index);
-                Console.WriteLine($"Book with '{id}' ID deleted successfully");
+                Console.WriteLine($" Book with '{id}' ID deleted successfully");
             }
             else
             {

@@ -1,4 +1,6 @@
 ﻿
+using onlineLibraryManagementSystem;
+
 namespace LibraryManagementSystem
 {
 
@@ -7,8 +9,11 @@ namespace LibraryManagementSystem
     {
         private static void Main()
         {
-            
-            Library library = new Library();
+            var emailService = new EmailNotificationService();
+            var smsService = new SMSNotificationService();
+
+            var libraryWithEmail = new Library(emailService);
+            var libraryWithSMS = new Library(smsService);
             try
             {
                 var user1 = new User("Alice", new DateTime(2023, 1, 1));
@@ -16,69 +21,73 @@ namespace LibraryManagementSystem
                 var user3 = new User("Charlie", new DateTime(2023, 3, 1));
                 var user4 = new User("David", new DateTime(2023, 4, 1));
                 var user5 = new User("Eve", new DateTime(2024, 5, 1));
-                var user6 = new User("Fiona", new DateTime(2024, 6, 1));
-                var user7 = new User("George", new DateTime(2024, 7, 1));
-                var user8 = new User("Hannah", new DateTime(2024, 8, 1));
-                var user9 = new User("Ian");
-                var user10 = new User("Julia");
+                var user6 = new User("Julia");
 
-                library.AddUser(user1);
-                library.AddUser(user2);
-                library.AddUser(user3);
-                library.AddUser(user4);
-                library.AddUser(user5);
-                library.AddUser(user6);
-                library.AddUser(user7);
-                library.AddUser(user8);
-                library.AddUser(user9);
-                library.AddUser(user10);
+                libraryWithEmail.AddUser(user1);
+                libraryWithEmail.AddUser(user2);
+                libraryWithEmail.AddUser(user3);
+                libraryWithSMS.AddUser(user4);
+                libraryWithSMS.AddUser(user5);
+                libraryWithSMS.AddUser(user6);
+              //  libraryWithSMS.AddUser(user6);
+
 
                 var book1 = new Book("The Great Gatsby", new DateTime(2023, 1, 1));
                 var book2 = new Book("1984", new DateTime(2023, 2, 1));
                 var book3 = new Book("To Kill a Mockingbird", new DateTime(2023, 3, 1));
                 var book4 = new Book("The Divine Comedy", new DateTime(2024, 3, 1));
                 var book5 = new Book("Crime and Punishment", new DateTime(2024, 4, 1));
-                var book6 = new Book("The Brothers Karamazov", new DateTime(2024, 5, 1));
-                var book7 = new Book("Don Quixote", new DateTime(2024, 6, 1));
-                var book8 = new Book("The Iliad");
-                var book9 = new Book("Anna Karenina");
+                var book6 = new Book("The Iliad");
 
-                library.AddBook(book1);
-                library.AddBook(book2);
-                library.AddBook(book3);
-                library.AddBook(book4);
-                library.AddBook(book5);
-                library.AddBook(book6);
-                library.AddBook(book7);
-                library.AddBook(book8);
-                library.AddBook(book9);
+                libraryWithEmail.AddBook(book1);
+                libraryWithEmail.AddBook(book2);
+                libraryWithEmail.AddBook(book3);
+                libraryWithSMS.AddBook(book4);
+                libraryWithSMS.AddBook(book5);
+                libraryWithSMS.AddBook(book6);
+              // libraryWithSMS.AddBook(book6);
 
-                Console.WriteLine("Users in the library:");
 
-                foreach (var user in library.GetAllUsers(1, 10))
+                Console.WriteLine("\n Users in the library with EMAIL:");
+
+                foreach (var user in libraryWithEmail.GetAllUsers(1, 10))
                 {
                     Console.WriteLine($"Name: {user.Name}, Joined: {user.CreatedDate}");
                 }
 
-                Console.WriteLine("Books in the library:");
-                foreach (var book in library.GetAllBooks(1, 7))
+                Console.WriteLine("\n Books in the library with EMAIL:");
+                foreach (var book in libraryWithEmail.GetAllBooks(1, 7))
                 {
                     Console.WriteLine($"Title: {book.Title}, Created: {book.CreatedDate}");
                 }
+
+                Console.WriteLine("\n Users in the library with SMS:");
+
+                foreach (var user in libraryWithSMS.GetAllUsers(1, 10))
+                {
+                    Console.WriteLine($"Name: {user.Name}, Joined: {user.CreatedDate}");
+                }
+
+                Console.WriteLine("\n Books in the library with SMS:");
+                foreach (var book in libraryWithSMS.GetAllBooks(1, 7))
+                {
+                    Console.WriteLine($"Title: {book.Title}, Created: {book.CreatedDate}");
+                }
+
                 var userToFind = "Alice";
-                var foundUser = library.FindUsersByName(userToFind);
+                var foundUser = libraryWithEmail.FindUsersByName(userToFind);
                 Console.WriteLine($"\nFound User: Name: {foundUser.Name}, Joined: {foundUser.CreatedDate}");
 
                 var bookToFind = "1984";
-                var foundBook = library.FindBooksByTitle(bookToFind);
-                Console.WriteLine($"\nFound Book: Title: {foundBook.Title}, Created: {foundBook.CreatedDate}");
+                var foundBook = libraryWithEmail.FindBooksByTitle(bookToFind);
+                Console.WriteLine($"Found Book: Title: {foundBook.Title}, Created: {foundBook.CreatedDate}\n");
 
-                var userIdToDelete = user9.Id;
-                library.DeleteUser(userIdToDelete);
+                var userIdToDelete = user6.Id;
+                libraryWithSMS.DeleteUser(userIdToDelete);
 
 
-                var bookIdToDelete = book8.Id;
-                library.DeleteBook(bookIdToDelete);
+                var bookIdToDelete = book5.Id;
+                libraryWithSMS.DeleteBook(bookIdToDelete);
             }
 
             catch (ArgumentException ex)

@@ -10,13 +10,13 @@ namespace onlineLibraryManagementSystem
     {
         public void SendNotificationOnFailure(string message)
         {
-            Console.WriteLine($"SMS error notification  '{message}'. Please email support@library.com.");
+            Console.WriteLine($"\n SMS error notification Error adding '{message}'. Please email support@library.com.");
 
         }
 
         public void SendNotificationOnSuccess(string message)
         {
-            Console.WriteLine($"SMS notification '{message}'. Thank you!");
+            Console.WriteLine($"\n SMS notification'{message}'added to Library. Thank you!");
 
         }
     }
