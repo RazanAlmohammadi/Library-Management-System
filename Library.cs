@@ -14,10 +14,10 @@ namespace LibraryManagementSystem
 
         public Library()
         {
-            _EmailNotificationService =  new EmailNotificationService();
+            _EmailNotificationService = new EmailNotificationService();
         }
 
-        
+
 
         public List<Book> GetAllBooks(int pageNumber, int pageSize)
         {
@@ -71,8 +71,9 @@ namespace LibraryManagementSystem
         {
             if (_books.Any(i => i.Title == book.Title))
             {
+                _EmailNotificationService.SendNotificationOnFailure($"We encountered an issue adding '{book.Title}' ");
                 throw new Exception("A Book with the same name already exists in the library");
-                _EmailNotificationService.SendNotificationOnSuccess($"We encountered an issue adding '{book.Title}' ");
+
             }
 
             _books.Add(book);
@@ -83,8 +84,9 @@ namespace LibraryManagementSystem
         {
             if (_users.Any(i => i.Name == user.Name))
             {
-                throw new Exception("A User with the same name already exists in the library");
                 _EmailNotificationService.SendNotificationOnFailure($"We encountered an issue adding '{user.Name}' ");
+                throw new Exception("A User with the same name already exists in the library");
+
             }
 
             _users.Add(user);
