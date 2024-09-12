@@ -29,7 +29,7 @@ namespace LibraryManagementSystem
                 libraryWithSMS.AddUser(user4);
                 libraryWithSMS.AddUser(user5);
                 libraryWithSMS.AddUser(user6);
-              //  libraryWithSMS.AddUser(user6);
+                //  libraryWithSMS.AddUser(user6);
 
 
                 var book1 = new Book("The Great Gatsby", new DateTime(2023, 1, 1));
@@ -45,7 +45,7 @@ namespace LibraryManagementSystem
                 libraryWithSMS.AddBook(book4);
                 libraryWithSMS.AddBook(book5);
                 libraryWithSMS.AddBook(book6);
-              // libraryWithSMS.AddBook(book6);
+                // libraryWithSMS.AddBook(book6);
 
 
                 Console.WriteLine("\n Users in the library with EMAIL:");
@@ -88,13 +88,20 @@ namespace LibraryManagementSystem
 
                 var bookIdToDelete = book5.Id;
                 libraryWithSMS.DeleteBook(bookIdToDelete);
-             
-             Console.WriteLine($"\n Borrowing Books :");
-             
-                libraryWithEmail.BorrowBook(book1.Id, user1.Id,7);
+
+                Console.WriteLine($"\n Borrowing Books :");
+
+                libraryWithEmail.BorrowBook(book1.Id, user1.Id, 1);
                 libraryWithEmail.BorrowBook(book2.Id, user2.Id, 4);
-                libraryWithEmail.BorrowBook(book1.Id, user1.Id, 3);
+                libraryWithEmail.BorrowBook(book1.Id, user3.Id, 3);
+
+                Console.WriteLine($"\n Returning Books :");
+                libraryWithEmail.ReturnBook(book1.Id, user1.Id);
+                libraryWithEmail.ReturnBook(book2.Id, user2.Id);
+                libraryWithEmail.ReturnBook(book3.Id, user3.Id);
             }
+
+
 
             catch (ArgumentException ex)
             {

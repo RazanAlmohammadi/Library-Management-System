@@ -11,12 +11,14 @@ namespace LibraryManagementSystem
         public bool IsBorrowed { get; set; }
         public DateTime? BorrowDate { get; set;}
         public string? BorrowedBy { get;set;}
+        public DateTime? returnDate{ get; set;}
         public Book(string title,DateTime? createdDate = null) : base(createdDate)
         {
             Title = title;
             IsBorrowed = false;
             BorrowDate= null;
             BorrowedBy= null;
+            returnDate=null;
 
         }
         public void Borrow(string name)
