@@ -10,11 +10,11 @@ namespace LibraryManagementSystem
     {
         private List<Book> _books = new List<Book>();
         private List<User> _users = new List<User>();
-        private INotificationService _NotificationService;
+        private INotificationService _notificationService;
 
         public Library(INotificationService notificationService)
         {
-            _NotificationService = notificationService;
+            _notificationService = notificationService;
         }
 
 
@@ -71,26 +71,26 @@ namespace LibraryManagementSystem
         {
             if (_books.Any(i => i.Title == book.Title))
             {
-                _NotificationService.SendNotificationOnFailure($"{book.Title}");
+                _notificationService.SendNotificationOnFailure($"{book.Title}");
                 throw new Exception("A Book with the same name already exists in the library");
 
             }
 
             _books.Add(book);
-            _NotificationService.SendNotificationOnSuccess($"{book.Title}");
+            _notificationService.SendNotificationOnSuccess($"{book.Title}");
         }
 
         public void AddUser(User user)
         {
             if (_users.Any(i => i.Name == user.Name))
             {
-                _NotificationService.SendNotificationOnFailure($"{user.Name}");
+                _notificationService.SendNotificationOnFailure($"{user.Name}");
                 throw new Exception("A User with the same name already exists in the library");
 
             }
 
             _users.Add(user);
-            _NotificationService.SendNotificationOnSuccess($"'{user.Name}'");
+            _notificationService.SendNotificationOnSuccess($"'{user.Name}'");
 
         }
 

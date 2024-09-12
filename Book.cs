@@ -10,7 +10,7 @@ namespace LibraryManagementSystem
         public string Title { get; set; }
         public bool IsBorrowed { get; set; }
         public DateTime? BorrowDate { get; set;}
-        public string BorrowedBy { get;set;}
+        public string? BorrowedBy { get;set;}
         public Book(string title,DateTime? createdDate = null) : base(createdDate)
         {
             Title = title;
@@ -19,7 +19,7 @@ namespace LibraryManagementSystem
             BorrowedBy= null;
 
         }
-        public void Borrow(string Name)
+        public void Borrow(string name)
         {
             if (IsBorrowed)
             {
@@ -28,11 +28,11 @@ namespace LibraryManagementSystem
 
             IsBorrowed = true;
             BorrowDate = DateTime.Now;
-            BorrowedBy = Name;
+            BorrowedBy = name;
             
         }
 
-        public void Return(string Name)
+        public void Return(string name)
         {
             if (!IsBorrowed)
             {
@@ -41,7 +41,7 @@ namespace LibraryManagementSystem
 
             IsBorrowed = false;
             BorrowDate = DateTime.Now;
-            BorrowedBy = Name;
+            BorrowedBy = name;
         }
     }
 
